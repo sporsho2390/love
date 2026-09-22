@@ -1,239 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Be My love 💘</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<title>I Love U ❤️</title>
 
-  <!-- Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffc8df, #f5aacb);
+    font-family: Georgia, serif;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    font-size: 42px;
+    opacity: .55;
+    animation: float 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+.h1 { top: 12%; left: 4%; }
+.h2 { top: 5%; right: 4%; }
+.h3 { top: 55%; left: 38%; }
+.h4 { bottom: 17%; left: 5%; }
+.h5 { bottom: 8%; right: 6%; }
+.h6 { bottom: 2%; left: 43%; }
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
-      background-size: 400% 400%;
-      animation: bgMove 12s ease infinite;
-      font-family: "Poppins", sans-serif;
-      overflow: hidden;
+    50% {
+        transform: translateY(-18px);
     }
+}
 
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+/* Main Card */
+.card {
+    position: absolute;
 
-    /* Card */
+    width: 90%;
+    max-width: 650px;
+    height: 700px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 45px;
+
+    background: rgba(255, 220, 235, .70);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 20px 50px rgba(190,70,120,.25),
+        inset 0 0 40px rgba(255,255,255,.35);
+
+    text-align: center;
+
+    padding-top: 75px;
+
+    z-index: 2;
+}
+
+/* Cat + Heart */
+.icons {
+    font-size: 90px;
+    margin-bottom: 70px;
+}
+
+/* Main Text */
+.title {
+    font-size: 48px;
+    color: #351827;
+    margin-bottom: 55px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+button {
+    border: none;
+    border-radius: 40px;
+
+    padding: 17px 45px;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+/* Yes */
+.yes {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #ff4f7d,
+        #ff668b
+    );
+
+    box-shadow:
+        0 8px 20px rgba(240,70,110,.3);
+}
+
+.yes:hover {
+    transform: scale(1.06);
+}
+
+/* Disabled Yes */
+.yes.disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* No */
+.no {
+    background: white;
+    color: #777;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+
+    position: relative;
+
+    z-index: 20;
+
+    transition:
+        left .25s ease,
+        top .25s ease;
+}
+
+/* Bottom text */
+.subtitle {
+    position: absolute;
+
+    bottom: 75px;
+
+    width: 100%;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-style: italic;
+
+    color: #666;
+}
+
+
+/* Success Screen */
+.success {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background: linear-gradient(
+        135deg,
+        #ffb6d4,
+        #ff77aa
+    );
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* Success Box */
+.success-box {
+    width: 85%;
+    max-width: 500px;
+
+    padding: 45px 25px;
+
+    border-radius: 35px;
+
+    background: rgba(255,255,255,.88);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.15);
+}
+
+
+/* I love you too */
+.success-box h1 {
+    font-family: Georgia, serif;
+
+    font-size: 38px;
+
+    color: #e8396d;
+
+    margin-bottom: 18px;
+}
+
+
+/* Text */
+.success-box p {
+    font-family: Arial, sans-serif;
+
+    font-size: 21px;
+
+    color: #555;
+}
+
+
+/* Back Button */
+.back {
+    margin-top: 28px;
+
+    padding: 13px 35px;
+
+    font-size: 18px;
+
+    background: #ffffff;
+
+    color: #e8396d;
+
+    border: 2px solid #ff8caf;
+
+    box-shadow: none;
+}
+
+.back:hover {
+    transform: scale(1.05);
+}
+
+
+/* Mobile */
+@media(max-width:600px) {
+
     .card {
-      width: min(92%, 420px);
-      padding: 40px 30px 45px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(18px);
-      border-radius: 28px;
-      text-align: center;
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.25),
-        inset 0 0 0 1px rgba(255,255,255,0.4);
-      position: relative;
-      animation: cardIn 1.1s ease;
+        width: 90%;
+        height: 700px;
     }
 
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .icons {
+        font-size: 75px;
+        margin-bottom: 70px;
     }
 
-    /* Glow ring */
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 30px;
-      background: linear-gradient(120deg, #ff4d6d, #ff9a9e, #fbc2eb);
-      z-index: -1;
-      filter: blur(20px);
-      opacity: 0.7;
-    }
-
-    .emoji {
-      font-size: 68px;
-      margin-bottom: 12px;
-      animation: heartbeat 1.8s infinite;
-    }
-
-    @keyframes heartbeat {
-      0%,100% { transform: scale(1); }
-      25% { transform: scale(1.08); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.12); }
-    }
-
-    h2 {
-      font-family: "Playfair Display", serif;
-      font-size: 28px;
-      color: #4a1c2f;
-      margin-bottom: 30px;
-      line-height: 1.35;
+    .title {
+        font-size: 38px;
+        margin-bottom: 55px;
     }
 
     .buttons {
-      position: relative;
-      height: 78px;
+        gap: 25px;
     }
 
     button {
-      position: absolute;
-      padding: 14px 36px;
-      border-radius: 40px;
-      border: none;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        padding: 16px 35px;
+        font-size: 19px;
     }
 
-    button:active {
-      transform: scale(0.94);
+    .subtitle {
+        font-size: 17px;
     }
 
-    #yes {
-      left: 12%;
-      background: linear-gradient(135deg, #ff4d6d, #ff758f);
-      color: #fff;
-      box-shadow: 0 15px 35px rgba(255,77,109,0.55);
+    .success-box h1 {
+        font-size: 34px;
     }
-
-    #yes:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(255,77,109,0.7);
-    }
-
-    #no {
-      left: 55%;
-      background: rgba(255,255,255,0.9);
-      color: #777;
-    }
-
-    .hint {
-      margin-top: 28px;
-      font-size: 13px;
-      color: #6b6b6b;
-      font-style: italic;
-    }
-
-    /* Floating depth hearts */
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      animation: floatUp linear forwards;
-      pointer-events: none;
-      filter: blur(0.3px);
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-120vh) scale(1.8);
-        opacity: 0;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      h2 { font-size: 23px; }
-      .emoji { font-size: 58px; }
-      button { padding: 12px 28px; font-size: 15px; }
-      #yes { left: 8%; }
-      #no { left: 55%; }
-    }
-  </style>
+}
+</style>
 </head>
+
 
 <body>
 
-  <div class="card">
-    <div class="emoji">🐱❤️</div>
-    <h2><br>will you be my Valentine?</h2>
+<!-- Floating Hearts -->
 
-    <div class="buttons">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 🙈</button>
+<div class="heart h1">💗</div>
+<div class="heart h2">💗</div>
+<div class="heart h3">💗</div>
+<div class="heart h4">💗</div>
+<div class="heart h5">❤️</div>
+<div class="heart h6">💗</div>
+
+
+<!-- Main Interface -->
+
+<div class="card">
+
+    <div class="icons">
+        🐱 ❤️
     </div>
 
-    <div class="hint">Some love stories don’t allow “no” ✨</div>
-  </div>
+    <h1 class="title">
+        I love U ❤️
+    </h1>
 
-  <!-- Sounds -->
-  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3"></audio>
-  <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
 
-  <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const card = document.querySelector(".card");
-    const hoverSound = document.getElementById("hoverSound");
-    const yesSound = document.getElementById("yesSound");
+    <!-- Yes + No পাশাপাশি -->
 
-    noBtn.addEventListener("mouseenter", () => {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
+    <div class="buttons">
 
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+        <button
+            class="yes"
+            id="yesBtn"
+            onclick="yesClicked()">
 
-      const maxX = cardRect.width - btnRect.width - 10;
-      const maxY = cardRect.height - btnRect.height - 10;
+            Yes 💖
 
-      noBtn.style.left = Math.random() * maxX + "px";
-      noBtn.style.top = Math.random() * maxY + "px";
-    });
+        </button>
 
-    yesBtn.addEventListener("click", () => {
-      yesSound.play();
 
-      confetti({
-        particleCount: 260,
-        spread: 120,
-        origin: { y: 0.65 }
-      });
+        <button
+            class="no"
+            id="noBtn"
+            onclick="moveNo()">
 
-      setTimeout(() => {
-        alert("YAY 💕 I can’t wait for Valentine’s Day with you!");
-      }, 500);
-    });
+            No 🙈
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 22 + 14 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      heart.style.opacity = Math.random() * 0.5 + 0.4;
+        </button>
 
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+    </div>
+
+
+    <p class="subtitle">
+        Some love stories don't allow “no” ✨
+    </p>
+
+</div>
+
+
+<!-- Success Interface -->
+
+<div
+    class="success"
+    id="success">
+
+    <div class="success-box">
+
+        <h1>
+            I love you too ❤️
+        </h1>
+
+        <p>
+            💕 Thank you! 💕
+        </p>
+
+        <div style="
+            font-size:55px;
+            margin-top:20px;
+        ">
+            🐱 ❤️ 🐱
+        </div>
+
+
+        <!-- Back Button -->
+
+        <button
+            class="back"
+            onclick="goBack()">
+
+            ↩️ Back
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* Answered state */
+let answered = false;
+
+
+/* YES */
+
+function yesClicked() {
+
+    if (answered) {
+        return;
     }
 
-    setInterval(createHeart, 380);
-  </script>
+    answered = true;
+
+    /* Success screen */
+    document
+        .getElementById("success")
+        .style.display = "flex";
+
+}
+
+
+/* NO */
+
+function moveNo() {
+
+    const btn =
+        document.getElementById("noBtn");
+
+    const width =
+        btn.offsetWidth;
+
+    const height =
+        btn.offsetHeight;
+
+    const maxX =
+        window.innerWidth - width - 10;
+
+    const maxY =
+        window.innerHeight - height - 10;
+
+    const x =
+        Math.random() * maxX;
+
+    const y =
+        Math.random() * maxY;
+
+    btn.style.position = "fixed";
+
+    btn.style.left =
+        x + "px";
+
+    btn.style.top =
+        y + "px";
+}
+
+
+/* BACK */
+
+function goBack() {
+
+    /* Success screen বন্ধ */
+    document
+        .getElementById("success")
+        .style.display = "none";
+
+
+    /* Yes permanently disabled */
+  
+    answered = false;
+    
+
+}
+
+</script>
 
 </body>
 </html>
